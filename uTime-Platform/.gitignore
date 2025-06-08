@@ -1,0 +1,36 @@
+﻿## Build folders ##
+bin/
+obj/
+out/
+
+## Rider IDE files ##
+idea/
+.idea/
+*.sln.iml
+
+## User-specific files ##
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Logs and database ##
+*.log
+*.db
+
+## ASP.NET runtime files ##
+wwwroot/lib/
+wwwroot/node_modules/
+
+## Publish folder ##
+publish/
+*.publish.xml
+
+## Secrets and config ##
+secrets.json
+
+## Misc ##
+vscode/
+.vscode/
+*.DS_Store
+Thumbs.db
