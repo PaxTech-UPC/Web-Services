@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTime-Platform", "uTime-Platform\uTime-Platform.csproj", "{B814A9AE-7486-4A95-9E3B-7A4F0A861B7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTimePlatform", "uTimePlatform\uTimePlatform.csproj", "{B814A9AE-7486-4A95-9E3B-7A4F0A861B7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
