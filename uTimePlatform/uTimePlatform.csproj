@@ -22,6 +22,19 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="IAM\Application\Internal\CommandServices\" />
+      <Folder Include="IAM\Application\Internal\OutboundServices\" />
+      <Folder Include="IAM\Application\Internal\QueryServices\" />
+      <Folder Include="IAM\Infrastructure\Hashing\BCrypt\Services\" />
+      <Folder Include="IAM\Infrastructure\Persistence\EFC\Repositories\" />
+      <Folder Include="IAM\Infrastructure\Pipeline\Middleware\Attributes\" />
+      <Folder Include="IAM\Infrastructure\Pipeline\Middleware\Components\" />
+      <Folder Include="IAM\Infrastructure\Pipeline\Middleware\Extensions\" />
+      <Folder Include="IAM\Infrastructure\Tokens\JWT\Configuration\" />
+      <Folder Include="IAM\Infrastructure\Tokens\JWT\Services\" />
+      <Folder Include="IAM\Interfaces\ACL\Services\" />
+      <Folder Include="IAM\Interfaces\REST\Resources\" />
+      <Folder Include="IAM\Interfaces\REST\Transform\" />
       <Folder Include="Profiles\Application\Internal\" />
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
     </ItemGroup>
