@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <Folder Include="Profiles\Application\Internal\" />
+      <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
     </ItemGroup>
 
 </Project>

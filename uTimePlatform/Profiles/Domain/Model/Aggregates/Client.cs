@@ -1,30 +1,39 @@
 ﻿using uTimePlatform.Profiles.Domain.Model.Commands;
+using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 
 namespace uTimePlatform.Profiles.Domain.Model.Aggregates;
 
 public class Client
 {
-    public int Id { get; private set;  }
+    public int Id { get; private set; }
 
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Email { get; private set; }
-    public DateTime BirthDate { get; private set; }
-    
-    
-    protected Client()
+    public PersonName Name { get; private set; }
+    public EmailAddress Email { get; private set; }
+    public BirthDate BirthDate { get; private set; }
+
+    public string FullName => Name.FullName;
+    public string EmailAddress => Email.Address;
+    public string BirthDateString => BirthDate.FormattedDate;
+
+    public Client()
     {
-        FirstName = string.Empty;
-        LastName = string.Empty;
-        Email = string.Empty;
-        BirthDate = DateTime.Now;
+        Name = new PersonName();
+        Email = new EmailAddress();
+        BirthDate = new BirthDate();
+    }
+
+    public Client(string firstname, string lastname, string email, string birthdate)
+    {
+        Name = new PersonName(firstname, lastname);
+        Email = new EmailAddress(email);
+        var parsedDate = DateTime.Parse(birthdate).ToUniversalTime();
+        BirthDate = new BirthDate(parsedDate);
     }
 
     public Client(CreateClientCommand command)
     {
-        FirstName = command.FirstName;
-        LastName = command.LastName;
-        Email = command.Email;
-        BirthDate = command.BirthDate;
+        Name = new PersonName(command.FirstName, command.LastName);
+        Email = new EmailAddress(command.Email);
+        BirthDate = new BirthDate(command.BirthDate.ToUniversalTime());
     }
 }

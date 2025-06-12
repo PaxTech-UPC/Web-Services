@@ -6,5 +6,11 @@ namespace uTimePlatform.Profiles.Interfaces.REST.Transform;
 public static class ClientResourceFromEntityAssembler
 {
     public static ClientResource ToResourceFromEntity(Client entity) =>
-        new ClientResource(entity.Id, entity.FirstName, entity.LastName, entity.Email, entity.BirthDate);
+        new ClientResource(
+            entity.Id,
+            entity.Name.FirstName,
+            entity.Name.LastName,
+            entity.Email.Address,
+            entity.BirthDate.Value
+        );
 }

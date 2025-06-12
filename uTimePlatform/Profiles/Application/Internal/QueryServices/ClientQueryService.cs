@@ -23,7 +23,8 @@
         /// <inheritdoc />
         public async Task<Client?> Handle(GetClientByEmailQuery query)
         {
-            return await clientRepository.FindByEmailAsync(query.Email);
+            return await clientRepository.FindByEmailAsync(query.Email.Address);
+
         }
         
     }

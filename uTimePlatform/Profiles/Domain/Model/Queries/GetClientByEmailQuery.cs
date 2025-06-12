@@ -1,3 +1,5 @@
-﻿namespace uTimePlatform.Profiles.Domain.Model.Queries;
+﻿using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 
-public record GetClientByEmailQuery(string Email);
+namespace uTimePlatform.Profiles.Domain.Model.Queries;
+
+public record GetClientByEmailQuery(EmailAddress Email);

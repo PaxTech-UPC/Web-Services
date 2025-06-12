@@ -5,6 +5,8 @@ using uTimePlatform.Profiles.Interfaces.REST.Resources;
 using uTimePlatform.Profiles.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.Profiles.Domain.Model.ValueObjects;
+
 
 namespace uTimePlatform.Profiles.Interfaces.REST;
 
@@ -57,12 +59,13 @@ public class ClientController(
     [SwaggerResponse(404, "Client not found")]
     public async Task<ActionResult> GetClientByEmail([FromQuery] string email)
     {
-        var query = new GetClientByEmailQuery(email);
+        var query = new GetClientByEmailQuery(new EmailAddress(email)); // ✅ FIX
         var result = await clientQueryService.Handle(query);
         if (result is null) return NotFound();
         var resource = ClientResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
+
 
     [HttpGet]
     [SwaggerOperation(
