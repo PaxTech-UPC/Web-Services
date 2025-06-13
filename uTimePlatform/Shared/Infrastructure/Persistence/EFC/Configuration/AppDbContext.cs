@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using uTimePlatform.Profiles.Domain.Model.Aggregates;
-using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 using uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using uTimePlatform.IAM.Domain.Model.Aggregates;
 
@@ -30,7 +29,17 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             name.Property(p => p.LastName).HasColumnName("last_name").IsRequired();
         });
         
-        
+        // Provider entity configuration
+        builder.Entity<Provider>().HasKey(p => p.Id);
+        builder.Entity<Provider>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+
+        // CompanyName value object
+        builder.Entity<Provider>().OwnsOne(p => p.Name, name =>
+        {
+            name.WithOwner().HasForeignKey("Id");
+            name.Property(cn => cn.Value).HasColumnName("company_name").IsRequired();
+        });
+
 
         // IAM Context - User
         builder.Entity<User>().HasKey(u => u.Id);

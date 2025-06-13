@@ -5,7 +5,6 @@ using uTimePlatform.Profiles.Interfaces.REST.Resources;
 using uTimePlatform.Profiles.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 
 
 namespace uTimePlatform.Profiles.Interfaces.REST;

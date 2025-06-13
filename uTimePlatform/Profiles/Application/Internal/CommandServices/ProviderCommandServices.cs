@@ -6,16 +6,16 @@ using uTimePlatform.Shared.Domain.Repositories;
 
 namespace uTimePlatform.Profiles.Application.Internal.CommandServices;
 
-public class ClientCommandServices(IClientRepository clientRepository, IUnitOfWork unitOfWork)
-    : IClientCommandService
+public class ProviderCommandServices(IProviderRepository providerRepository, IUnitOfWork unitOfWork)
+    : IProviderCommandService
 {
-    public async Task<Client?> Handle(CreateClientCommand command)
+    public async Task<Provider?> Handle(CreateProviderCommand command)
     {
-        var client = new Client(command);
+        var provider = new Provider(command);
 
         try
         {
-            await clientRepository.AddAsync(client);
+            await providerRepository.AddAsync(provider);
             await unitOfWork.CompleteAsync();
         }
         catch (Exception)
@@ -23,6 +23,6 @@ public class ClientCommandServices(IClientRepository clientRepository, IUnitOfWo
             return null;
         }
 
-        return client;
+        return provider;
     }
 }
