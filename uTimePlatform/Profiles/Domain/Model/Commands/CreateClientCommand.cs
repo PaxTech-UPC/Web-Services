@@ -2,5 +2,5 @@
 
 public record CreateClientCommand(
     string FirstName,
-    string LastName
+    string LastName, int UserId
     );

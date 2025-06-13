@@ -2,5 +2,6 @@
 
 public record CreateClientResource(
     string FirstName,
-    string LastName
+    string LastName,
+    int UserId
     );

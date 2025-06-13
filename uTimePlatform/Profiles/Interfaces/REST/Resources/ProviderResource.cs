@@ -2,5 +2,6 @@
 
 public record ProviderResource(
     int Id,
-    string CompanyName
+    string CompanyName,
+    int UserId
 );

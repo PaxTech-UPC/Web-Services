@@ -1,5 +1,6 @@
 ﻿namespace uTimePlatform.Profiles.Interfaces.REST.Resources;
 
 public record CreateProviderResource(
-    string CompanyName
+    string CompanyName,
+    int UserId
 );

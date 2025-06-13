@@ -47,6 +47,21 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<User>().Property(u => u.Email).IsRequired();
         builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
         
+        // Client - User FK
+        builder.Entity<Client>()
+            .HasOne(c => c.User)
+            .WithMany()
+            .HasForeignKey(c => c.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Provider - User FK
+        builder.Entity<Provider>()
+            .HasOne(p => p.User)
+            .WithMany()
+            .HasForeignKey(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        
         
         // Naming convention
         builder.UseSnakeCaseNamingConvention();

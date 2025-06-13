@@ -1,5 +1,5 @@
 ﻿namespace uTimePlatform.Profiles.Domain.Model.Commands;
 
 public record CreateProviderCommand(
-    string CompanyName
+    string CompanyName, int UserId
 );

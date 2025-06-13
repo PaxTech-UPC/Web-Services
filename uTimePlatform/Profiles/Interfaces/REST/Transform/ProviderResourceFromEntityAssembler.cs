@@ -8,6 +8,7 @@ public static class ProviderResourceFromEntityAssembler
     public static ProviderResource ToResourceFromEntity(Provider entity) =>
         new ProviderResource(
             entity.Id,
-            entity.Name.Value
+            entity.Name.Value,
+            entity.UserId
         );
 }

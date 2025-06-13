@@ -3,5 +3,6 @@
 public record ClientResource(
     int Id,
     string FirstName,
-    string LastName
+    string LastName,
+    int UserId
 );

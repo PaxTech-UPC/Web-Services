@@ -8,6 +8,7 @@ public static class CreateProviderCommandFromResourceAssembler
 
     public static CreateProviderCommand ToCommandFromResource(CreateProviderResource resource) =>
         new CreateProviderCommand(
-            resource.CompanyName
+            resource.CompanyName,
+            resource.UserId
         );  
 }
