@@ -3,6 +3,5 @@
 public record CreateClientResource(
     string FirstName,
     string LastName,
-    string Email,
-    DateTime BirthDate
+    int UserId
     );

@@ -10,7 +10,6 @@ public static class ClientResourceFromEntityAssembler
             entity.Id,
             entity.Name.FirstName,
             entity.Name.LastName,
-            entity.Email.Address,
-            entity.BirthDate.Value
+            entity.UserId
         );
 }

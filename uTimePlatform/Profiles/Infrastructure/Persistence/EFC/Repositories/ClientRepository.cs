@@ -14,10 +14,6 @@ namespace uTimePlatform.Profiles.Infrastructure.Persistence.EFC.Repositories
         {
             return await Context.Set<Client>().ToListAsync();
         }
-
-        public async Task<Client?> FindByEmailAsync(string email)
-        {
-            return await Context.Set<Client>().FirstOrDefaultAsync(c => c.Email.Address == email);
-        }
+        
     }
 }

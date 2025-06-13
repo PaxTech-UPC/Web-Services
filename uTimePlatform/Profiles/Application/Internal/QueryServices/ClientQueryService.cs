@@ -20,11 +20,4 @@
             return await clientRepository.FindByIdAsync(query.Id);
         }
         
-        /// <inheritdoc />
-        public async Task<Client?> Handle(GetClientByEmailQuery query)
-        {
-            return await clientRepository.FindByEmailAsync(query.Email.Address);
-
-        }
-        
     }

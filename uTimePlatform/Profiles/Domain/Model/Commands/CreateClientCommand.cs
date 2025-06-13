@@ -2,8 +2,5 @@
 
 public record CreateClientCommand(
     string FirstName,
-    string LastName,
-    string Email,
-    DateTime BirthDate
-    
+    string LastName, int UserId
     );

@@ -9,5 +9,4 @@ public interface IClientQueryService
 
     Task<Client?> Handle(GetClientByIdQuery query);
     
-    Task<Client?> Handle(GetClientByEmailQuery query);
 }

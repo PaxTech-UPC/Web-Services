@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
+﻿
 namespace uTimePlatform.Profiles.Domain.Model.ValueObjects;
 
 public record PersonName(string FirstName, string LastName)

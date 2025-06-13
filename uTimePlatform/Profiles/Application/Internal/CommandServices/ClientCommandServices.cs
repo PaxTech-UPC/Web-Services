@@ -9,13 +9,8 @@ namespace uTimePlatform.Profiles.Application.Internal.CommandServices;
 public class ClientCommandServices(IClientRepository clientRepository, IUnitOfWork unitOfWork)
     : IClientCommandService
 {
-    /// <inheritdoc />
     public async Task<Client?> Handle(CreateClientCommand command)
     {
-        var existingClient = await clientRepository.FindByEmailAsync(command.Email);
-        if (existingClient != null)
-            throw new Exception("Client with this email already exists.");
-
         var client = new Client(command);
 
         try
