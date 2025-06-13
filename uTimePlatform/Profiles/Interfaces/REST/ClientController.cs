@@ -49,23 +49,7 @@ public class ClientController(
         var resource = ClientResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
-
-    [HttpGet("by-email")]
-    [SwaggerOperation(
-        Summary = "Gets a client by email",
-        Description = "Gets a client using the email address",
-        OperationId = "GetClientByEmail")]
-    [SwaggerResponse(200, "The client was found", typeof(ClientResource))]
-    [SwaggerResponse(404, "Client not found")]
-    public async Task<ActionResult> GetClientByEmail([FromQuery] string email)
-    {
-        var query = new GetClientByEmailQuery(new EmailAddress(email)); // ✅ FIX
-        var result = await clientQueryService.Handle(query);
-        if (result is null) return NotFound();
-        var resource = ClientResourceFromEntityAssembler.ToResourceFromEntity(result);
-        return Ok(resource);
-    }
-
+    
 
     [HttpGet]
     [SwaggerOperation(

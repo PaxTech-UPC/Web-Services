@@ -9,8 +9,6 @@ public static class CreateClientCommandFromResourceAssembler
     public static CreateClientCommand ToCommandFromResource(CreateClientResource resource) =>
         new CreateClientCommand(
             resource.FirstName, 
-            resource.LastName, 
-            resource.Email, 
-            resource.BirthDate
+            resource.LastName 
             );  
 }

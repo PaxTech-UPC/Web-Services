@@ -2,6 +2,8 @@
 using uTimePlatform.Profiles.Domain.Model.Aggregates;
 using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 using uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
+using uTimePlatform.IAM.Domain.Model.Aggregates;
+
 
 namespace uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -27,21 +29,16 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             name.Property(p => p.FirstName).HasColumnName("first_name").IsRequired();
             name.Property(p => p.LastName).HasColumnName("last_name").IsRequired();
         });
+        
+        
 
-        // EmailAddress value object
-        builder.Entity<Client>().OwnsOne(c => c.Email, email =>
-        {
-            email.WithOwner().HasForeignKey("Id");
-            email.Property(e => e.Address).HasColumnName("email").IsRequired();
-        });
-
-        // BirthDate value object
-        builder.Entity<Client>().OwnsOne(c => c.BirthDate, birthdate =>
-        {
-            birthdate.WithOwner().HasForeignKey("Id");
-            birthdate.Property(b => b.Value).HasColumnName("birth_date").IsRequired();
-        });
-
+        // IAM Context - User
+        builder.Entity<User>().HasKey(u => u.Id);
+        builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(u => u.Email).IsRequired();
+        builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
+        
+        
         // Naming convention
         builder.UseSnakeCaseNamingConvention();
     }

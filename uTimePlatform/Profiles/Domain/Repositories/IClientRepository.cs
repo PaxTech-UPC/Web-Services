@@ -7,5 +7,4 @@ public interface IClientRepository: IBaseRepository<Client>
 {
     Task<IEnumerable<Client>> FindAllAsync();
 
-    Task<Client?> FindByEmailAsync(string email);
 }

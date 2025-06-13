@@ -5,9 +5,6 @@ public interface IClientsContextFacade
 {
     Task<int> CreateClient(
         string firstName, 
-        string lastName, 
-        string email, 
-        DateTime birthDate);
+        string lastName);
     
-    Task<int> FetchClientIdByEmail(string email);
 }

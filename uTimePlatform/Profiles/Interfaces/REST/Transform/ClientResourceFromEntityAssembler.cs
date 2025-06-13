@@ -9,8 +9,6 @@ public static class ClientResourceFromEntityAssembler
         new ClientResource(
             entity.Id,
             entity.Name.FirstName,
-            entity.Name.LastName,
-            entity.Email.Address,
-            entity.BirthDate.Value
+            entity.Name.LastName
         );
 }

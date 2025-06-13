@@ -13,6 +13,7 @@ public class User(string email, string passwordHash)
 
     [JsonIgnore] public string PasswordHash { get; private set; } = passwordHash;
     
+    
     public User UpdateEmail(string email)
     {
         Email = email;
@@ -24,4 +25,5 @@ public class User(string email, string passwordHash)
         PasswordHash = passwordHash;
         return this;
     }
+    
 }
