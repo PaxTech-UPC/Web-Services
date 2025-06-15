@@ -25,4 +25,11 @@ public class Worker {
     public void setName(String name) { this.name = name; }
     public void setSpecialization(String specialization) { this.specialization = specialization; }
     public void setPhotoUrl(String photoUrl) { this.photoUrl = photoUrl; }
+    
+    public Worker(CreateWorkerCommand command)
+    {
+        name = command.name;
+        specialization = command.specialization;
+        photoUrl = command.photoUrl;
+    }
 }

@@ -1,6 +1,9 @@
-﻿namespace uTimePlatform.Workers.Domain.Repositories;
+﻿using uTimePlatform.Workers.Domain.Model.Aggregates;
+using uTimePlatform.Shared.Domain.Repositories;
 
-public interface IWorkerRepository
+namespace uTimePlatform.Workers.Domain.Repositories;
+
+public interface IWorkerRepository: IBaseRepository<Worker>
 {
-    
+    Task<IEnumerable<Worker>> FindAllAsync();
 }
