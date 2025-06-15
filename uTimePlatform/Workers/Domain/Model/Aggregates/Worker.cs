@@ -4,13 +4,13 @@ using uTimePlatform.Workers.Domain.Model.ValueObjects;
 
 namespace uTimePlatform.Workers.Domain.Model.Aggregates;
 
-public class Workers {
+public class Worker {
     private long id;
     private String name;
     private String specialization;
     private String photoUrl;
 
-    public Workers(long id, String name, String specialization, String photoUrl) {
+    public Worker(long id, String name, String specialization, String photoUrl) {
         this.id = id;
         this.name = name;
         this.specialization = specialization;
