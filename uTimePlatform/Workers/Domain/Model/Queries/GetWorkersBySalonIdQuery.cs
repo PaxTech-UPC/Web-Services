@@ -1,3 +1,3 @@
 ﻿namespace uTimePlatform.Workers.Domain.Model.Queries;
 
-public record GetWorkerByIdQuery(long id);
+public record GetWorkersBySalonIdQuery(long salonId);
