@@ -28,7 +28,12 @@
       <Folder Include="Profiles\Application\Internal\" />
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
       <Folder Include="Workers\Application\" />
-      <Folder Include="Workers\Domain\" />
+      <Folder Include="Workers\Domain\Model\Aggregates\" />
+      <Folder Include="Workers\Domain\Model\Commands\" />
+      <Folder Include="Workers\Domain\Model\Queries\" />
+      <Folder Include="Workers\Domain\Model\ValueObjects\" />
+      <Folder Include="Workers\Domain\Repositories\" />
+      <Folder Include="Workers\Domain\Services\" />
       <Folder Include="Workers\Infrastructure\" />
       <Folder Include="Workers\Interfaces\" />
     </ItemGroup>
