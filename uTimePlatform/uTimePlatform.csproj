@@ -27,7 +27,6 @@
     <ItemGroup>
       <Folder Include="Profiles\Application\Internal\" />
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
-      <Folder Include="Workers\Application\ACL\" />
       <Folder Include="Workers\Infrastructure\" />
       <Folder Include="Workers\Interfaces\" />
     </ItemGroup>
