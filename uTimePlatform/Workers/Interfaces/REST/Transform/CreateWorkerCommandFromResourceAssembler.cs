@@ -1,6 +1,15 @@
-﻿namespace uTimePlatform.Workers.Interfaces.REST.Transform;
+﻿using uTimePlatform.Workers.Domain.Model.Commands;
+using uTimePlatform.Workers.Interfaces.REST.Resources;
 
-public class CreateWorkerCommandFromResourceAssembler
+namespace uTimePlatform.Workers.Interfaces.REST.Transform;
+
+public static class CreateWorkerCommandFromResourceAssembler
 {
-    
+    public static CreateWorkerCommand ToCommandFromResource(CreateWorkerResource resource) =>
+        new CreateWorkerCommand(
+            resource.FirstName,
+            resource.LastName,
+            resource.Specialization,
+            resource.PhotoUrl
+        );
 }
