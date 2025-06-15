@@ -24,6 +24,11 @@ using uTimePlatform.IAM.Infrastructure.Persistence.EFC.Repositories;
 using uTimePlatform.IAM.Interfaces.ACL;
 using uTimePlatform.IAM.Interfaces.ACL.Services;
 using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using uTimePlatform.Workers.Application.Internal.CommandServices;
+using uTimePlatform.Workers.Application.Internal.QueryServices;
+using uTimePlatform.Workers.Domain.Repositories;
+using uTimePlatform.Workers.Domain.Services;
+using uTimePlatform.Workers.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -108,6 +113,10 @@ builder.Services.AddScoped<IClientCommandService, ClientCommandServices>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
 
+//Workers
+builder.Services.AddScoped<IWorkerCommandService, WorkerCommandServices>();
+builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
+builder.Services.AddScoped<IWorkerQueryService, WorkerQueryService>();
 
 // IAM Bounded Context
 builder.Services.AddScoped<IUserRepository, UserRepository>();
