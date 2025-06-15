@@ -5,19 +5,19 @@ using uTimePlatform.Workers.Domain.Model.ValueObjects;
 namespace uTimePlatform.Workers.Domain.Model.Aggregates;
 
 public class Worker {
-    private long id;
+    private int id;
     private String name;
     private String specialization;
     private String photoUrl;
 
-    public Worker(long id, String name, String specialization, String photoUrl) {
+    public Worker(int id, String name, String specialization, String photoUrl) {
         this.id = id;
         this.name = name;
         this.specialization = specialization;
         this.photoUrl = photoUrl;
     }
 
-    public long getId() { return id; }
+    public int getId() { return id; }
     public String getName() { return name; }
     public String getSpecialization() { return specialization; }
     public String getPhotoUrl() { return photoUrl; }
