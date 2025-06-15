@@ -1,6 +1,7 @@
 ﻿namespace uTimePlatform.Workers.Domain.Model.Commands;
 
 public record CreateWorkerCommand(
-    String name, 
-    String specialization, 
-    String photoUrl);
+    string FirstName,
+    string LastName, 
+    string specialization, 
+    string photoUrl);

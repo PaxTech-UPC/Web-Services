@@ -1,3 +1,3 @@
 ﻿namespace uTimePlatform.Workers.Domain.Model.Commands;
 
-public record UpdateWorkerCommand(int id, String name, String specialization, String photoUrl);
+public record UpdateWorkerCommand(int id, string name, string specialization, string photoUrl);

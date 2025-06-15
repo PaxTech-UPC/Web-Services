@@ -1,35 +1,39 @@
-﻿using uTimePlatform.IAM.Domain.Model.Aggregates;
+﻿using uTimePlatform.Workers.Domain.Model.Aggregates;
 using uTimePlatform.Workers.Domain.Model.Commands;
 using uTimePlatform.Workers.Domain.Model.ValueObjects;
 
 namespace uTimePlatform.Workers.Domain.Model.Aggregates;
 
-public class Worker {
-    private int id;
-    private String name;
-    private String specialization;
-    private String photoUrl;
+public class Worker
+{
+    public int Id { get; private set; }
 
-    public Worker(int id, String name, String specialization, String photoUrl) {
-        this.id = id;
-        this.name = name;
-        this.specialization = specialization;
-        this.photoUrl = photoUrl;
+    public PersonName Name { get; private set; }
+
+    public string FullName => Name.FullName;
+    public string Specialization { get; private set; }
+
+    public string PhotoUrl { get; private set; }
+
+    public Worker()
+    {
+        Name = new PersonName();
+        Specialization = string.Empty;
+        PhotoUrl = string.Empty;
     }
 
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public String getSpecialization() { return specialization; }
-    public String getPhotoUrl() { return photoUrl; }
+    public Worker(string firstName, string lastName, string specialization, string photoUrl)
+    {
+        Name = new PersonName(firstName, lastName);
+        Specialization = specialization;
+        PhotoUrl = photoUrl;
+    }
 
-    public void setName(String name) { this.name = name; }
-    public void setSpecialization(String specialization) { this.specialization = specialization; }
-    public void setPhotoUrl(String photoUrl) { this.photoUrl = photoUrl; }
-    
     public Worker(CreateWorkerCommand command)
     {
-        name = command.name;
-        specialization = command.specialization;
-        photoUrl = command.photoUrl;
+        Name = new PersonName(command.FirstName, command.LastName);
+        Specialization = command.specialization;
+        PhotoUrl = command.photoUrl;
     }
+    
 }
