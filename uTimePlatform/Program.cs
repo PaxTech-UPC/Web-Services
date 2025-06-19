@@ -25,6 +25,13 @@ using uTimePlatform.IAM.Interfaces.ACL;
 using uTimePlatform.IAM.Interfaces.ACL.Services;
 using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Extensions;
 
+// Reviews
+using uTimePlatform.Reviews.Application.Internal.CommandServices;
+using uTimePlatform.Reviews.Application.Internal.QueryServices;
+using uTimePlatform.Reviews.Domain.Repositories;
+using uTimePlatform.Reviews.Domain.Services;
+using uTimePlatform.Reviews.Infrastructure.Persistence.EFC.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------- SERVICES ----------
@@ -108,6 +115,10 @@ builder.Services.AddScoped<IClientCommandService, ClientCommandServices>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
 
+// Reviews
+builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewQueryService, ReviewQueryService>();
 
 // IAM Bounded Context
 builder.Services.AddScoped<IUserRepository, UserRepository>();
