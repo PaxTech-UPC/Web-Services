@@ -41,6 +41,40 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             comment.Property(p => p.Content).HasColumnName("comment").IsRequired();
         });
         
+        // --- Reservation ---
+        /*builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().HasKey(r => r.Id);
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.Id).ValueGeneratedOnAdd();
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.SalonId).IsRequired();
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.ClientId).IsRequired();
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.PaymentId).IsRequired();
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.TimeSlotId).IsRequired();
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.WorkerId).IsRequired();
+        
+        // --- Payments ---
+        builder.Entity<Payments>().HasKey(p => p.Id);
+        builder.Entity<Payments>().Property(p => p.Id).ValueGeneratedOnAdd();
+        builder.Entity<Payments>().Property(p => p.Status).IsRequired();
+
+        // Money como Value Object
+        builder.Entity<Payments>().OwnsOne(p => p.Money, money =>
+        {
+            money.Property(m => m.Amount).HasColumnName("amount").IsRequired();
+            money.Property(m => m.Currency).HasColumnName("currency").IsRequired();
+        });
+        
+        // --- TimeSlots ---
+        builder.Entity<TimeSlots>().HasKey(t => t.Id);
+        builder.Entity<TimeSlots>().Property(t => t.Id).ValueGeneratedOnAdd();
+        builder.Entity<TimeSlots>().Property(t => t.startTime).HasColumnName("start_time").IsRequired();
+        builder.Entity<TimeSlots>().Property(t => t.endTime).HasColumnName("end_time").IsRequired();
+        builder.Entity<TimeSlots>().Property(t => t.status).HasColumnName("status").IsRequired();
+
+        // TimeSlotType como Value Object
+        builder.Entity<TimeSlots>().OwnsOne(t => t.Type, type =>
+        {
+            type.Property(v => v.Type).HasColumnName("type").IsRequired();
+        });*/
+        
         //Provider Response
         builder.Entity<Review>()
             .Property(r => r.ProviderResponse)
@@ -92,6 +126,29 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasForeignKey(r => r.SalonId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        /*builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
+            .HasOne(r => r.Client)
+            .WithMany()
+            .HasForeignKey(r => r.ClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
+            .HasOne(r => r.Payment)
+            .WithMany()
+            .HasForeignKey(r => r.PaymentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
+            .HasOne(r => r.TimeSlot)
+            .WithMany()
+            .HasForeignKey(r => r.TimeSlotId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
+            .HasOne(r => r.Worker)
+            .WithMany()
+            .HasForeignKey(r => r.WorkerId)
+            .OnDelete(DeleteBehavior.Cascade);*/
         
         // Naming convention
         builder.UseSnakeCaseNamingConvention();
