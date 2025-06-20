@@ -28,6 +28,10 @@
       <Folder Include="Profiles\Application\Internal\" />
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
       <Folder Include="Reviews\Application\ACL\" />
+      <Folder Include="Services\Application\" />
+      <Folder Include="Services\Domain\" />
+      <Folder Include="Services\Infrastructure\" />
+      <Folder Include="Services\Interfaces\" />
     </ItemGroup>
 
 </Project>
