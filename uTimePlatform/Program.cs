@@ -24,6 +24,11 @@ using uTimePlatform.IAM.Infrastructure.Persistence.EFC.Repositories;
 using uTimePlatform.IAM.Interfaces.ACL;
 using uTimePlatform.IAM.Interfaces.ACL.Services;
 using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using uTimePlatform.Reservation.Application.Internal.CommandServices;
+using uTimePlatform.Reservation.Application.Internal.QueryServices;
+using uTimePlatform.Reservation.Domain.Repositories;
+using uTimePlatform.Reservation.Domain.Services;
+using uTimePlatform.Reservation.Infrastructure.Persistence.EFC.Repositories;
 
 // Reviews
 using uTimePlatform.Reviews.Application.Internal.CommandServices;
@@ -127,6 +132,22 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+// Reservations
+builder.Services.AddScoped<IReservationCommandService, ReservationCommandServices>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReservationQueryService, ReservationQueryServices>();
+
+// Payments
+builder.Services.AddScoped<IPaymentCommandService, PaymentCommandServices>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentQueryService, PaymentQueryServices>();
+
+// TimeSlots
+builder.Services.AddScoped<ITimeSlotCommandService, TimeSlotCommandServices>();
+builder.Services.AddScoped<ITimeSlotRepository, TimeSlotRepository>();
+builder.Services.AddScoped<ITimeSlotQueryService, TimeSlotQueryServices>();
+
 
 // JWT Config
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
