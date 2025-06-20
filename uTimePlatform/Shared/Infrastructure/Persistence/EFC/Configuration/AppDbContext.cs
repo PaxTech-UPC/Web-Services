@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using uTimePlatform.Profiles.Domain.Model.Aggregates;
+using uTimePlatform.Workers.Domain.Model.Aggregates;
 using uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using uTimePlatform.IAM.Domain.Model.Aggregates;
 using uTimePlatform.Reviews.Domain.Model.Aggregates;
@@ -17,6 +18,27 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        // Worker entity configuration
+        builder.Entity<Worker>().HasKey(w => w.Id);
+        builder.Entity<Worker>().Property(w => w.Id).IsRequired().ValueGeneratedOnAdd();
+
+        builder.Entity<Worker>().OwnsOne(w => w.Name, name =>
+        {
+            name.WithOwner().HasForeignKey("Id");
+            name.Property(n => n.FirstName).HasColumnName("first_name").IsRequired();
+            name.Property(n => n.LastName).HasColumnName("last_name").IsRequired();
+        });
+
+        builder.Entity<Worker>().Property(w => w.Specialization)
+            .HasColumnName("specialization")
+            .IsRequired();
+
+        builder.Entity<Worker>().Property(w => w.PhotoUrl)
+            .HasColumnName("photo_url")
+            .IsRequired();
+        
+        
         
         // Client entity configuration
         builder.Entity<Client>().HasKey(c => c.Id);
@@ -25,6 +47,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // Review entity configuration
         builder.Entity<Review>().HasKey(r => r.Id);
         builder.Entity<Review>().Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
+        
+        
         
         // PersonName value object
         builder.Entity<Client>().OwnsOne(c => c.Name, name =>
@@ -92,6 +116,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasForeignKey(r => r.SalonId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        
         
         // Naming convention
         builder.UseSnakeCaseNamingConvention();
