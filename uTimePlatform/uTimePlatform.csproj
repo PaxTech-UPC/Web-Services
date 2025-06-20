@@ -28,13 +28,8 @@
       <Folder Include="Profiles\Application\Internal\" />
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
       <Folder Include="Reviews\Application\ACL\" />
-      <Folder Include="Services\Application\" />
-      <Folder Include="Services\Domain\Model\Aggregates\" />
-      <Folder Include="Services\Domain\Model\Comands\" />
-      <Folder Include="Services\Domain\Model\Queries\" />
-      <Folder Include="Services\Domain\Model\ValueObjects\" />
-      <Folder Include="Services\Interfaces\ACL\" />
-      <Folder Include="Services\Interfaces\REST\" />
+      <Folder Include="Services\Interfaces\REST\Resources\" />
+      <Folder Include="Services\Interfaces\REST\Transform\" />
     </ItemGroup>
 
 </Project>
