@@ -6,4 +6,5 @@ namespace uTimePlatform.Workers.Domain.Repositories;
 public interface IWorkerRepository: IBaseRepository<Worker>
 {
     Task<IEnumerable<Worker>> FindAllAsync();
+    
 }

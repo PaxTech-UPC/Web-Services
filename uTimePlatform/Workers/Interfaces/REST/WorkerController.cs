@@ -5,6 +5,7 @@ using uTimePlatform.Workers.Interfaces.REST.Resources;
 using uTimePlatform.Workers.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.Workers.Domain.Model.Commands;
 
 namespace uTimePlatform.Workers.Interfaces.REST;
 
@@ -60,5 +61,43 @@ public class WorkerController(IWorkerCommandService workerCommandService, IWorke
         var result = await workerQueryService.Handle(query);
         var resources = result.Select(WorkerResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
+    }
+    [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Deletes a worker",
+        Description = "Deletes a worker by ID",
+        OperationId = "DeleteWorker")]
+    [SwaggerResponse(200, "Worker deleted")]
+    [SwaggerResponse(404, "Worker not found")]
+    public async Task<ActionResult> DeleteWorker([FromRoute] int id)
+    {
+        var query = new GetWorkerByIdQuery(id);
+        var worker = await workerQueryService.Handle(query);
+
+        if (worker is null)
+            return NotFound("Worker not found");
+        var command = new DeleteWorkerCommand(id);
+        await workerCommandService.Handle(command);
+
+        return Ok("Worker with given id successfully deleted");
+    }
+    
+    [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Updates a worker",
+        Description = "Updates a worker by ID using the provided fields",
+        OperationId = "UpdateWorker")]
+    [SwaggerResponse(200, "Worker updated", typeof(WorkerResource))]
+    [SwaggerResponse(404, "Worker not found")]
+    public async Task<ActionResult> UpdateWorker([FromRoute] int id, [FromBody] UpdateWorkerResource resource)
+    {
+        var updateWorkerCommand = UpdateWorkerCommandFromResourceAssembler.ToCommandFromResource(id, resource);
+        var result = await workerCommandService.Handle(updateWorkerCommand);
+
+        if (result is null)
+            return NotFound("Worker not found");
+
+        var updatedResource = WorkerResourceFromEntityAssembler.ToResourceFromEntity(result);
+        return Ok(updatedResource);
     }
 }

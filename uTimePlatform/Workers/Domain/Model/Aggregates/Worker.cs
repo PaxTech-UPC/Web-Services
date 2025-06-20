@@ -35,5 +35,12 @@ public class Worker
         Specialization = command.specialization;
         PhotoUrl = command.photoUrl;
     }
-    
+    public void UpdateInformation(string firstName, string lastName, string specialization, string photoUrl)
+    {
+        Name = new PersonName(firstName, lastName);
+        Specialization = specialization;
+        PhotoUrl = photoUrl;
+    }
+
+
 }

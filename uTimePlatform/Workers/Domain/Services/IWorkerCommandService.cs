@@ -6,4 +6,7 @@ namespace uTimePlatform.Workers.Domain.Services;
 public interface IWorkerCommandService
 {
     Task<Worker?> Handle(CreateWorkerCommand command);
+    Task<Worker?> Handle(UpdateWorkerCommand command);
+
+    Task<Worker?> Handle(DeleteWorkerCommand command);
 }

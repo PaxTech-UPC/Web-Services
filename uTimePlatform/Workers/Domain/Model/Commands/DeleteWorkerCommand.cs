@@ -2,12 +2,12 @@
 {
     public record DeleteWorkerCommand
     {
+        public int Id { get; }
         public DeleteWorkerCommand(int id)
         {
             if (id <= 0)
-            {
                 throw new ArgumentException("Worker ID must be a positive number", nameof(id));
-            }
+            Id = id;
         }
     }
 }
