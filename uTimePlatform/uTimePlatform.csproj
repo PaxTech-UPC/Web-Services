@@ -29,11 +29,12 @@
       <Folder Include="Profiles\Infrastructure\Persistence\EFC\" />
       <Folder Include="Reviews\Application\ACL\" />
       <Folder Include="Services\Application\" />
-      <Folder Include="Services\Domain\Model\" />
-      <Folder Include="Services\Domain\Repositories\" />
-      <Folder Include="Services\Domain\Services\" />
-      <Folder Include="Services\Infrastructure\" />
-      <Folder Include="Services\Interfaces\" />
+      <Folder Include="Services\Domain\Model\Aggregates\" />
+      <Folder Include="Services\Domain\Model\Comands\" />
+      <Folder Include="Services\Domain\Model\Queries\" />
+      <Folder Include="Services\Domain\Model\ValueObjects\" />
+      <Folder Include="Services\Interfaces\ACL\" />
+      <Folder Include="Services\Interfaces\REST\" />
     </ItemGroup>
 
 </Project>
