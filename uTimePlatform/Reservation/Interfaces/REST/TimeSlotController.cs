@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using uTimePlatform.Reservation.Domain.Model.Queries;
 using uTimePlatform.Reservation.Domain.Services;
 using uTimePlatform.Reservation.Interfaces.REST.Resources;
@@ -18,6 +19,7 @@ public class TimeSlotController(
     : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Create a new time slot",
         Description = "Creates a time slot with start time, end time, status and type",
@@ -36,6 +38,7 @@ public class TimeSlotController(
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Get a time slot by ID",
         Description = "Returns a time slot by its ID",
@@ -54,6 +57,7 @@ public class TimeSlotController(
     }
 
     [HttpGet]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Get all time slots",
         Description = "Returns all available time slots",

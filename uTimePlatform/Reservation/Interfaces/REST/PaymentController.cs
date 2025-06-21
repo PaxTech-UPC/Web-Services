@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using uTimePlatform.Reservation.Domain.Model.Queries;
 using uTimePlatform.Reservation.Domain.Services;
 using uTimePlatform.Reservation.Interfaces.REST.Resources;
@@ -19,6 +20,7 @@ public class PaymentController(
     : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Creates a payment",
         Description = "Creates a new payment with amount, currency, and status",
@@ -36,6 +38,7 @@ public class PaymentController(
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets a payment by ID",
         Description = "Returns payment data for given ID",
@@ -52,6 +55,7 @@ public class PaymentController(
     }
 
     [HttpGet]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets all payments",
         Description = "Returns a list of all payments",

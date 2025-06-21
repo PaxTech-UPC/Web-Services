@@ -3,6 +3,7 @@ using uTimePlatform.Profiles.Domain.Model.Aggregates;
 using uTimePlatform.Workers.Domain.Model.Aggregates;
 using uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using uTimePlatform.IAM.Domain.Model.Aggregates;
+using uTimePlatform.Reservation.Domain.Model.Aggregates;
 using uTimePlatform.Reviews.Domain.Model.Aggregates;
 
 
@@ -66,7 +67,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         });
         
         // --- Reservation ---
-        /*builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().HasKey(r => r.Id);
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().HasKey(r => r.Id);
         builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.Id).ValueGeneratedOnAdd();
         builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.SalonId).IsRequired();
         builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>().Property(r => r.ClientId).IsRequired();
@@ -82,6 +83,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // Money como Value Object
         builder.Entity<Payments>().OwnsOne(p => p.Money, money =>
         {
+            money.WithOwner().HasForeignKey("Id");
             money.Property(m => m.Amount).HasColumnName("amount").IsRequired();
             money.Property(m => m.Currency).HasColumnName("currency").IsRequired();
         });
@@ -96,8 +98,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // TimeSlotType como Value Object
         builder.Entity<TimeSlots>().OwnsOne(t => t.Type, type =>
         {
+            type.WithOwner().HasForeignKey("Id");
             type.Property(v => v.Type).HasColumnName("type").IsRequired();
-        });*/
+        });
         
         //Provider Response
         builder.Entity<Review>()
@@ -150,7 +153,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasForeignKey(r => r.SalonId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        /*builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
+        builder.Entity<Reservation.Domain.Model.Aggregates.Reservation>()
             .HasOne(r => r.Client)
             .WithMany()
             .HasForeignKey(r => r.ClientId)
@@ -172,8 +175,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasOne(r => r.Worker)
             .WithMany()
             .HasForeignKey(r => r.WorkerId)
-            .OnDelete(DeleteBehavior.Cascade);*/
-        
+            .OnDelete(DeleteBehavior.Cascade);
         
         // Naming convention
         builder.UseSnakeCaseNamingConvention();
