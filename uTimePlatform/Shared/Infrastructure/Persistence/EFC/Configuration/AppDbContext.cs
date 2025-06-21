@@ -5,7 +5,7 @@ using uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensio
 using uTimePlatform.IAM.Domain.Model.Aggregates;
 using uTimePlatform.Reservation.Domain.Model.Aggregates;
 using uTimePlatform.Reviews.Domain.Model.Aggregates;
-
+using uTimePlatform.Services.Domain.Model.Aggregates;
 
 namespace uTimePlatform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -38,8 +38,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Worker>().Property(w => w.PhotoUrl)
             .HasColumnName("photo_url")
             .IsRequired();
-        
-        
+        builder.Entity<Worker>().Property(w =>w.ProviderId)
+            .HasColumnName("provider_id")
+            .IsRequired();
         
         // Client entity configuration
         builder.Entity<Client>().HasKey(c => c.Id);
@@ -49,6 +50,44 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Review>().HasKey(r => r.Id);
         builder.Entity<Review>().Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
         
+        // Service entity configuration
+        builder.Entity<Service>().HasKey(s => s.Id);
+        builder.Entity<Service>().Property(s => s.Id).IsRequired().ValueGeneratedOnAdd();
+
+        builder.Entity<Service>().OwnsOne(s => s.Name, name =>
+        {
+            name.WithOwner().HasForeignKey("Id");
+            name.Property(n => n.Value).HasColumnName("name").IsRequired();
+        });
+
+        builder.Entity<Service>().OwnsOne(s => s.Duration, duration =>
+        {
+            duration.WithOwner().HasForeignKey("Id");
+            duration.Property(d => d.Value).HasColumnName("duration").IsRequired();
+        });
+
+        builder.Entity<Service>().OwnsOne(s => s.Price, price =>
+        {
+            price.WithOwner().HasForeignKey("Id");
+            price.Property(p => p.Value).HasColumnName("price").IsRequired();
+        });
+
+        builder.Entity<Service>().OwnsOne(s => s.Status, status =>
+        {
+            status.WithOwner().HasForeignKey("Id");
+            status.Property(st => st.Value).HasColumnName("status").IsRequired();
+        });
+
+        builder.Entity<Service>().OwnsOne(s => s.SalonId, salonId =>
+        {
+            salonId.WithOwner().HasForeignKey("Id");
+            salonId.Property(s => s.Value).HasColumnName("salon_id").IsRequired();
+        });
+
+        builder.Entity<Service>().Property(s => s.Description)
+            .HasColumnName("description")
+            .IsRequired();
+
         
         
         // PersonName value object

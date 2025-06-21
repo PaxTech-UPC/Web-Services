@@ -43,6 +43,11 @@ using uTimePlatform.Reviews.Application.Internal.QueryServices;
 using uTimePlatform.Reviews.Domain.Repositories;
 using uTimePlatform.Reviews.Domain.Services;
 using uTimePlatform.Reviews.Infrastructure.Persistence.EFC.Repositories;
+using uTimePlatform.Services.Application.Internal.CommandServices;
+using uTimePlatform.Services.Application.Internal.QueryServices;
+using uTimePlatform.Services.Domain.Repositories;
+using uTimePlatform.Services.Domain.Services;
+using uTimePlatform.Services.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -127,6 +132,10 @@ builder.Services.AddScoped<IClientCommandService, ClientCommandServices>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
 
+builder.Services.AddScoped<IProviderCommandService, ProviderCommandServices>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+
 // Reviews
 builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
@@ -135,6 +144,11 @@ builder.Services.AddScoped<IReviewQueryService, ReviewQueryService>();
 builder.Services.AddScoped<IWorkerCommandService, WorkerCommandServices>();
 builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
 builder.Services.AddScoped<IWorkerQueryService, WorkerQueryService>();
+
+//Service
+builder.Services.AddScoped<IServiceCommandService, ServiceCommandService>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IServiceQueryService, ServiceQueryService>();
 
 // IAM Bounded Context
 builder.Services.AddScoped<IUserRepository, UserRepository>();
