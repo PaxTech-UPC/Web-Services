@@ -1,4 +1,5 @@
 ﻿using uTimePlatform.Profiles.Domain.Model.Aggregates;
+using uTimePlatform.Profiles.Interfaces.ACL;
 using uTimePlatform.Profiles.Interfaces.REST.Resources;
 using uTimePlatform.Profiles.Interfaces.REST.Transform;
 using uTimePlatform.Reservation.Domain.Model.Queries;
