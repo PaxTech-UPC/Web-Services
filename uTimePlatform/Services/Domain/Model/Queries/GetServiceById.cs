@@ -1,3 +1,3 @@
 ﻿namespace uTimePlatform.Services.Domain.Model.Queries;
 
-public record GetServiceById();
+public record GetServiceById(int Id);

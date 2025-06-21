@@ -1,6 +1,10 @@
-﻿namespace uTimePlatform.Services.Domain.Repositories;
+﻿using uTimePlatform.Services.Domain.Model.Aggregates;
+using uTimePlatform.Shared.Domain.Repositories;
 
-public interface IServiceRespository
+namespace uTimePlatform.Services.Domain.Repositories;
+
+public interface IServiceRepository : IBaseRepository<Service>
 {
-    
+    Task<IEnumerable<Service>> FindAllAsync();
+    Task<IEnumerable<Service>> FindBySalonIdAsync(int salonId);
 }

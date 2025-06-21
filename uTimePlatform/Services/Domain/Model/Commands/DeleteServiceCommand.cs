@@ -1,6 +1,6 @@
 ﻿namespace uTimePlatform.Services.Domain.Model.Commands;
 
-public record DeleteServiceCommand
+public class DeleteServiceCommand
 {
     public int Id { get; }
 
@@ -10,4 +10,4 @@ public record DeleteServiceCommand
             throw new ArgumentException("Service ID must be a positive number", nameof(id));
         Id = id;
     }
-};
+}
