@@ -8,6 +8,10 @@ public static class ReviewResourceFromEntityAssembler
     public static ReviewResource ToResourceFromEntity(Review entity) =>
         new ReviewResource(
             entity.Id,
-            entity.ProviderResponse ?? string.Empty // Puede ser null ya que puede o no resppnder el proveedor
+            entity.ClientId,
+            entity.SalonId,
+            entity.Comment.Content,
+            entity.Rating,
+            entity.ProviderResponse ?? string.Empty
         );
 }

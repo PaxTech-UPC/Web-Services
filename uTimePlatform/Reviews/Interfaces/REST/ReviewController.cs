@@ -5,6 +5,7 @@ using uTimePlatform.Reviews.Interfaces.REST.Resources;
 using uTimePlatform.Reviews.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
 namespace uTimePlatform.Reviews.Interfaces.REST;
 
@@ -19,6 +20,7 @@ public class ReviewController(
     : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Creates a reviews",
         Description = "",
@@ -34,6 +36,7 @@ public class ReviewController(
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets a review by ID",
         Description = "Gets a review using its unique identifier",
@@ -50,6 +53,7 @@ public class ReviewController(
     }
 
     [HttpGet]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets all reviews",
         Description = "Returns a list of all reviews",
