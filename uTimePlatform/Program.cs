@@ -127,6 +127,10 @@ builder.Services.AddScoped<IClientCommandService, ClientCommandServices>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
 
+builder.Services.AddScoped<IProviderCommandService, ProviderCommandServices>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+
 // Reviews
 builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
