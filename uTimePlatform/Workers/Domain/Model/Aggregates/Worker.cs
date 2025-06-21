@@ -1,4 +1,5 @@
-﻿using uTimePlatform.Workers.Domain.Model.Aggregates;
+﻿using uTimePlatform.Profiles.Domain.Model.Aggregates;
+using uTimePlatform.Workers.Domain.Model.Aggregates;
 using uTimePlatform.Workers.Domain.Model.Commands;
 using uTimePlatform.Workers.Domain.Model.ValueObjects;
 
@@ -8,12 +9,15 @@ public class Worker
 {
     public int Id { get; private set; }
 
+    public int ProviderId { get; private set; }
     public PersonName Name { get; private set; }
 
     public string FullName => Name.FullName;
     public string Specialization { get; private set; }
 
     public string PhotoUrl { get; private set; }
+    
+    public Provider Provider { get; private set; }
 
     public Worker()
     {

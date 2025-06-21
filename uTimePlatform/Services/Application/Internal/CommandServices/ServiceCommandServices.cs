@@ -19,9 +19,10 @@ public class ServiceCommandService(IServiceRepository serviceRepository, IUnitOf
             await unitOfWork.CompleteAsync();
             return service;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return null;
+            Console.WriteLine($"Error al crear el servicio: {ex.Message}");
+            throw; // Esto ayudará a ver el error real en Swagger/Postman
         }
     }
 
