@@ -11,7 +11,7 @@ public class TimeSlotCommandServices (ITimeSlotRepository timeSlotRepository, IU
 {
     public async Task<TimeSlots?> Handle(CreateTimeSlotCommand command)
     {
-        var timeSlots = new TimeSlots();
+        var timeSlots = new TimeSlots(command);
         try
         {
             await timeSlotRepository.AddAsync(timeSlots);
