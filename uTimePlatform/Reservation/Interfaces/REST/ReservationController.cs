@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using uTimePlatform.Reservation.Domain.Model.Queries;
 using uTimePlatform.Reservation.Domain.Services;
 using uTimePlatform.Reservation.Interfaces.ACL;
@@ -23,6 +24,7 @@ public class ReservationController(
     : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Creates a reservation",
         Description = "Creates a reservation for a client, worker, and time slot",
@@ -43,6 +45,7 @@ public class ReservationController(
 
     // GET /api/v1/reservations/{id}
     [HttpGet("{id}")]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets a reservation by ID (basic)",
         Description = "Returns basic reservation info by ID",
@@ -61,6 +64,7 @@ public class ReservationController(
 
 // GET /api/v1/reservations/{id}/details
     [HttpGet("{id}/details")]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets a reservation with full details",
         Description = "Returns reservation including provider, payment, time slot and worker info",
@@ -81,6 +85,7 @@ public class ReservationController(
     
     // GET /api/v1/reservations
     [HttpGet]
+    [AllowAnonymous]
     [SwaggerOperation(
         Summary = "Gets all reservations (basic)",
         Description = "Returns a list of all reservations with basic info",
