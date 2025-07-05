@@ -7,6 +7,7 @@ using uTimePlatform.Reservation.Domain.Services;
 using uTimePlatform.Reservation.Interfaces.ACL;
 using uTimePlatform.Reservation.Interfaces.REST.Resources;
 using uTimePlatform.Reservation.Interfaces.REST.Transform;
+using uTimePlatform.Services.Domain.Model.ValueObjects;
 
 namespace uTimePlatform.Reservation.Interfaces.REST;
 
@@ -29,7 +30,7 @@ public class ReservationController(
         Summary = "Creates a reservation",
         Description = "Creates a reservation for a client, worker, and time slot",
         OperationId = "CreateReservation")]
-    [SwaggerResponse(201, "Reservation was created", typeof(ReservationDetailsResource))]
+    [SwaggerResponse(201, "Reservation was created", typeof(ReservationResource))]
     [SwaggerResponse(400, "Invalid request")]
     public async Task<IActionResult> Create([FromBody] CreateReservationResource resource)
     {
@@ -37,8 +38,7 @@ public class ReservationController(
         var reservation = await reservationCommandService.Handle(command);
         if (reservation == null) return BadRequest("Failed to create reservation");
 
-        var reservationResource = await ReservationDetailsResourceFromEntityAssembler.ToResourceFromEntityAsync(
-            reservation, providerFacade, paymentFacade, timeSlotService, workerFacade);
+        var reservationResource = ReservationResourceFromEntityAssembler.ToResourceFromEntity(reservation);
 
         return CreatedAtAction(nameof(GetById), new { id = reservation.Id }, reservationResource);
     }

@@ -24,13 +24,15 @@ using uTimePlatform.IAM.Infrastructure.Persistence.EFC.Repositories;
 using uTimePlatform.IAM.Interfaces.ACL;
 using uTimePlatform.IAM.Interfaces.ACL.Services;
 using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Extensions;
-
+using uTimePlatform.Profiles.Application.ACL;
+using uTimePlatform.Profiles.Interfaces.ACL;
+using uTimePlatform.Reservation.Application.ACL;
 using uTimePlatform.Reservation.Application.Internal.CommandServices;
 using uTimePlatform.Reservation.Application.Internal.QueryServices;
 using uTimePlatform.Reservation.Domain.Repositories;
 using uTimePlatform.Reservation.Domain.Services;
 using uTimePlatform.Reservation.Infrastructure.Persistence.EFC.Repositories;
-
+using uTimePlatform.Reservation.Interfaces.ACL;
 using uTimePlatform.Workers.Application.Internal.CommandServices;
 using uTimePlatform.Workers.Application.Internal.QueryServices;
 using uTimePlatform.Workers.Domain.Repositories;
@@ -148,6 +150,7 @@ builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
 builder.Services.AddScoped<IProviderCommandService, ProviderCommandServices>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+builder.Services.AddScoped<IProvidersContextFacade, ProvidersContextFacade>();
 
 // Reviews
 builder.Services.AddScoped<IReviewCommandService, ReviewCommandService>();
@@ -157,6 +160,7 @@ builder.Services.AddScoped<IReviewQueryService, ReviewQueryService>();
 builder.Services.AddScoped<IWorkerCommandService, WorkerCommandServices>();
 builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
 builder.Services.AddScoped<IWorkerQueryService, WorkerQueryService>();
+builder.Services.AddScoped<uTimePlatform.Workers.Interfaces.ACL.IWorkerContextFacade, uTimePlatform.Workers.Application.ACL.WorkerContextFacade>();
 
 //Service
 builder.Services.AddScoped<IServiceCommandService, ServiceCommandService>();
@@ -175,6 +179,9 @@ builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 builder.Services.AddScoped<IReservationCommandService, ReservationCommandServices>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IReservationQueryService, ReservationQueryServices>();
+builder.Services.AddScoped<IProviderContextFacade, ProviderContextFacadeAdapter>();
+builder.Services.AddScoped<IPaymentContextFacade, PaymentContextFacadeAdapter>();
+builder.Services.AddScoped<uTimePlatform.Reservation.Interfaces.ACL.IWorkerContextFacade, WorkerContextFacadeAdapter>();
 
 // Payments
 builder.Services.AddScoped<IPaymentCommandService, PaymentCommandServices>();
