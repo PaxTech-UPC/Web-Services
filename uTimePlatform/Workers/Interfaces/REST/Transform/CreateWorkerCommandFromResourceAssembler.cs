@@ -10,6 +10,7 @@ public static class CreateWorkerCommandFromResourceAssembler
             resource.FirstName,
             resource.LastName,
             resource.Specialization,
-            resource.PhotoUrl
+            resource.PhotoUrl, 
+            resource.ProviderId
         );
 }

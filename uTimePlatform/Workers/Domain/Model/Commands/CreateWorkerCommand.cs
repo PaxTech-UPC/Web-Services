@@ -4,4 +4,5 @@ public record CreateWorkerCommand(
     string FirstName,
     string LastName, 
     string specialization, 
-    string photoUrl);
+    string photoUrl,
+    int ProviderId);

@@ -37,9 +37,12 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Worker>().Property(w => w.PhotoUrl)
             .HasColumnName("photo_url")
             .IsRequired();
-        builder.Entity<Worker>().Property(w =>w.ProviderId)
-            .HasColumnName("provider_id")
-            .IsRequired();
+        
+        builder.Entity<Worker>()
+            .HasOne(w => w.Provider)
+            .WithMany(p => p.Workers)
+            .HasForeignKey(w => w.ProviderId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         // Client entity configuration
         builder.Entity<Client>().HasKey(c => c.Id);

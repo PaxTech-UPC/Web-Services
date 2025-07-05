@@ -38,6 +38,7 @@ public class Worker
         Name = new PersonName(command.FirstName, command.LastName);
         Specialization = command.specialization;
         PhotoUrl = command.photoUrl;
+        ProviderId = command.ProviderId;
     }
     public void UpdateInformation(string firstName, string lastName, string specialization, string photoUrl)
     {

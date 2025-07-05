@@ -2,6 +2,7 @@
 using uTimePlatform.Profiles.Domain.Model.Commands;
 using uTimePlatform.Profiles.Domain.Model.ValueObjects;
 using uTimePlatform.Reviews.Domain.Model.Aggregates;
+using uTimePlatform.Workers.Domain.Model.Aggregates;
 
 namespace uTimePlatform.Profiles.Domain.Model.Aggregates;
 
@@ -10,6 +11,8 @@ public class Provider
     public int Id { get; private set; }
     public CompanyName Name { get; private set; }
     
+    public ICollection<Worker> Workers { get; private set; } = new List<Worker>();
+
     public ICollection<Review> Reviews { get; private set; } = new List<Review>();
     
     public int UserId { get; private set; }
