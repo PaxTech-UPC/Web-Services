@@ -5,6 +5,7 @@ using uTimePlatform.IAM.Interfaces.REST.Resources;
 using uTimePlatform.IAM.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Domain.Model.Queries;
 
 namespace uTimePlatform.IAM.Interfaces.REST;
 
@@ -13,7 +14,7 @@ namespace uTimePlatform.IAM.Interfaces.REST;
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Authentication endpoints")]
-public class AuthenticationController(IUserCommandService userCommandService) : ControllerBase
+public class AuthenticationController(IUserCommandService userCommandService, IUserQueryService userQueryService) : ControllerBase
 {
     /**
      * <summary>
@@ -56,7 +57,17 @@ public class AuthenticationController(IUserCommandService userCommandService) : 
     public async Task<IActionResult> SignUp([FromBody] SignUpResource signUpResource)
     {
         var signUpCommand = SignUpCommandFromResourceAssembler.ToCommandFromResource(signUpResource);
+
         await userCommandService.Handle(signUpCommand);
-        return Ok(new { message = "User created successfully" });
+
+        // Buscar el user por email
+        var createdUser = await userQueryService.Handle(new GetUserByEmailQuery(signUpResource.Email));
+
+        return Ok(new
+        {
+            id = createdUser.Id,
+            email = createdUser.Email
+        });
+
     }
 }

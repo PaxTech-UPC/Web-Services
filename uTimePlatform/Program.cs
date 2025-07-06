@@ -97,6 +97,19 @@ builder.Services.AddSwaggerGen(options =>
     options.EnableAnnotations();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+
+
 // ---------- DATABASE ----------
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -197,6 +210,9 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowAll");
+
+
 
 // JWT Auth Middleware (si lo usas)
 app.UseAuthentication();
@@ -206,4 +222,8 @@ app.UseRequestAuthorization();
 
 app.UseAuthorization();
 app.MapControllers();
+
+
+
 app.Run();
+

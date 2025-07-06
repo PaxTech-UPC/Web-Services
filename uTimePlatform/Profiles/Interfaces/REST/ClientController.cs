@@ -5,6 +5,7 @@ using uTimePlatform.Profiles.Interfaces.REST.Resources;
 using uTimePlatform.Profiles.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using uTimePlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
 
 namespace uTimePlatform.Profiles.Interfaces.REST;
@@ -19,6 +20,7 @@ public class ClientController(
     : ControllerBase
 {
     [HttpPost]
+    [AllowAnonymous] // 👈 Permitir crear sin JWT
     [SwaggerOperation(
         Summary = "Creates a client",
         Description = "Creates a client with given name, email, and password",
