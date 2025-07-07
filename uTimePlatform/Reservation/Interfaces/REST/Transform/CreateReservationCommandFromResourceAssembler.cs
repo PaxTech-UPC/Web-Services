@@ -7,8 +7,8 @@ public static class CreateReservationCommandFromResourceAssembler
 {
     public static CreateReservationCommand ToCommandFromResource(CreateReservationResource resource) =>
         new CreateReservationCommand(
-                resource.SalonId,
                 resource.ClientId,
+                resource.SalonId,
                 resource.PaymentId,
                 resource.TimeSlotId, 
                 resource.WorkerId
