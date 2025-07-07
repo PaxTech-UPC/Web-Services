@@ -11,9 +11,9 @@ public class WorkerContextFacade(
     IWorkerQueryService workerQueryService
 ) :  IWorkerContextFacade
 {
-    public async Task<int> CreateWorker(string firstName, string lastName, string specialization, string photoUrl)
+    public async Task<int> CreateWorker(string firstName, string lastName, string specialization, string photoUrl, int ProviderId)
     {
-        var command = new CreateWorkerCommand(firstName, lastName, specialization, photoUrl);
+        var command = new CreateWorkerCommand(firstName, lastName, specialization, photoUrl, ProviderId);
         var worker = await workerCommandService.Handle(command);
         return worker?.Id ?? 0;
     }
